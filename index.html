@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fashion Collection - Ventas Online</title>
+  <!-- Bootstrap 5 CSS para compatibilidad y diseño responsive -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    /* Estilos base optimizados para todos los dispositivos */
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #F5E1C8;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Fondo animado con corazones y estrellas */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAnIGhlaWdodD0nMTIwJyB2aWV3Qm94PScwIDAgMTIwIDEyMCc+CiAgPGcgZmlsbD0nI2Q5Yjc5ZSc+CiAgICA8cGF0aCBkPSdNMjAgMzAgQzIwIDIwIDQwIDIwIDQwIDM1IEM0MCAyMCA2MCAyMCA2MCAzNSBDNjAgNTAgNDAgNzAgNDAgNzAgQzQwIDcwIDIwIDUwIDIwIDMwWicvPgogICAgPHBhdGggZD0nTTcwIDYwIEM3MCA1MCA5MCA1MCA5MCA2NSBDOTAgNTAgMTEwIDUwIDExMCA2NSBDMTEwIDgwIDkwIDEwMCA5MCAxMDAgQzkwIDEwMCA3MCA4MCA3MCA2MFonLz4KICAgIDxwb2x5Z29uIHBvaW50cz0nNjAsMjAgNjUsMzIgNzgsMzIgNjgsNDAgNzIsNTIgNjAsNDUgNDgsNTIgNTIsNDAgNDIsMzIgNTUsMzInLz4KICAgIDxwb2x5Z29uIHBvaW50cz0nMzAsOTAgMzMsOTUgNDAsOTUgMzUsMTAwIDM3LDEwNyAzMCwxMDMgMjMsMTA3IDI1LDEwMCAyMCw5NSAyNyw5NScvPgogIDwvZz4KPC9zdmc+Cg==');
+      background-repeat: repeat;
+      background-size: 150px 150px;
+      animation: moverFondo 30s linear infinite;
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    @keyframes moverFondo {
+      from { transform: translate3d(0,0,0); }
+      to { transform: translate3d(-50%, -50%, 0); }
+    }
+
+    /* Contenedor principal altamente responsive */
+    .container-profile {
+      max-width: 90vw;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      margin: 1rem auto;
+      padding: 1.5rem;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out forwards;
+      min-height: calc(100vh - 2rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Logo circular altamente responsive */
+    .profile-pic {
+      width: min(150px, 35vw);
+      height: min(150px, 35vw);
+      border-radius: 50%;
+      background: #B59379;
+      color: white;
+      font-weight: bold;
+      font-size: clamp(10px, 2.5vw, 14px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: 0 auto 1.5rem;
+      transition: transform 0.3s ease;
+      line-height: 1.2;
+      padding: 10px;
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.05);
+    }
+
+    /* Textos optimizados */
+    .profile-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: #5B4431;
+      margin-bottom: 0.5rem;
+    }
+
+    .profile-subtitle {
+      font-size: 18px;
+      color: #5B4431;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .profile-description {
+      font-size: 14px;
+      color: #5B4431;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+    }
+
+    /* Botones de asesores optimizados */
+    .asesor-btn {
+      background: #DCC8B4;
+      color: #fff !important;
+      font-weight: 600;
+      border-radius: 30px;
+      padding: 0.8rem 1.2rem;
+      margin: 0.5rem auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border: none;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      text-decoration: none;
+      font-size: 1rem;
+      width: 90%;
+      max-width: 300px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .asesor-btn:hover, .asesor-btn:focus {
+      background: #cbb098;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      color: #fff !important;
+    }
+
+    .asesor-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Botones de redes sociales */
+    .social-container {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #DCC8B4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .social-btn:hover {
+      background: #cbb098;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Iconos optimizados */
+    .link-icon {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.2s ease;
+    }
+
+    .social-btn:hover .link-icon {
+      transform: scale(1.1);
+    }
+
+    /* Diseño responsive optimizado */
+    @media (min-width: 768px) {
+      .container-profile {
+        max-width: 420px;
+        padding: 2.5rem;
+      }
+      .profile-name {
+        font-size: 28px;
+      }
+      .profile-subtitle {
+        font-size: 20px;
+      }
+      .asesor-btn {
+        font-size: 1.1rem;
+        width: 80%;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .container-profile {
+        margin: 1rem;
+        border-radius: 15px;
+      }
+      .asesor-btn {
+        padding: 0.7rem 1rem;
+        width: 95%;
+      }
+      .social-container {
+        gap: 0.8rem;
+      }
+      .social-btn {
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+    /* Mejoras de accesibilidad */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container-profile">
+    <!-- Logo circular -->
+    <div class="profile-pic">
+      FASHION COLLECTION
+    </div>
+    
+    <!-- Nombre y subtítulo -->
+    <h1 class="profile-name">Fashion Collection</h1>
+    <h2 class="profile-subtitle">VENTAS ONLINE</h2>
+    <p class="profile-description">¡Siguenos en nuestras redes sociales y mantente al dia con las ultimas tendencias en maquillaje, skincare y mas novedades!</p>
+    
+    <!-- Botones de asesores WhatsApp -->
+    <div class="asesores-container">
+      <a href="#" class="asesor-btn" id="asesor1-link" target="_blank" rel="noopener noreferrer">
+        <svg class="link-icon" fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M20.52 3.478A11.923 11.923 0 0012 0C5.373 0 0 5.373 0 12c0 2.105.55 4.07 1.505 5.832L0 24l6.425-1.496A11.902 11.902 0 0012 24c6.627 0 12-5.373 12-12 0-3.208-1.257-6.215-3.48-8.522zM12 21.5a9.487 9.487 0 01-4.735-1.344l-.34-.205-3.819.889.936-3.72-.22-.37A9.475 9.475 0 012.5 12c0-5.247 4.253-9.5 9.5-9.5s9.5 4.253 9.5 9.5-4.253 9.5-9.5 9.5zm5.26-7.138c-.275-.137-1.627-.8-1.879-.89-.252-.091-.434-.137-.617.137-.183.275-.707.89-.867 1.074-.16.183-.322.205-.597.068a7.086 7.086 0 01-2.08-1.28 7.611 7.611 0 01-1.4-1.741c-.146-.25-.015-.385.118-.52.122-.121.274-.314.41-.471.134-.157.179-.274.27-.457.089-.183.045-.343-.022-.48-.068-.136-.616-1.484-.843-2.032-.222-.537-.45-.463-.616-.472a1.143 1.143 0 00-.521-.031c-.159 0-.48.063-.732.306-.251.244-.958.933-.958 2.276 0 1.343.98 2.638 1.116 2.823.137.183 1.925 2.937 4.663 4.115a17.87 17.87 0 002.86 1.254c.378.158.673.135.924.082.282-.058.86-.352.982-.693.124-.342.124-.634.087-.69-.035-.057-.133-.09-.308-.157z"/>
+        </svg>
+        ASESOR 1
+      </a>
+      
+      <a href="#" class="asesor-btn" id="asesor2-link" target="_blank" rel="noopener noreferrer">
+        <svg class="link-icon" fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M20.52 3.478A11.923 11.923 0 0012 0C5.373 0 0 5.373 0 12c0 2.105.55 4.07 1.505 5.832L0 24l6.425-1.496A11.902 11.902 0 0012 24c6.627 0 12-5.373 12-12 0-3.208-1.257-6.215-3.48-8.522zM12 21.5a9.487 9.487 0 01-4.735-1.344l-.34-.205-3.819.889.936-3.72-.22-.37A9.475 9.475 0 012.5 12c0-5.247 4.253-9.5 9.5-9.5s9.5 4.253 9.5 9.5-4.253 9.5-9.5 9.5zm5.26-7.138c-.275-.137-1.627-.8-1.879-.89-.252-.091-.434-.137-.617.137-.183.275-.707.89-.867 1.074-.16.183-.322.205-.597.068a7.086 7.086 0 01-2.08-1.28 7.611 7.611 0 01-1.4-1.741c-.146-.25-.015-.385.118-.52.122-.121.274-.314.41-.471.134-.157.179-.274.27-.457.089-.183.045-.343-.022-.48-.068-.136-.616-1.484-.843-2.032-.222-.537-.45-.463-.616-.472a1.143 1.143 0 00-.521-.031c-.159 0-.48.063-.732.306-.251.244-.958.933-.958 2.276 0 1.343.98 2.638 1.116 2.823.137.183 1.925 2.937 4.663 4.115a17.87 17.87 0 002.86 1.254c.378.158.673.135.924.082.282-.058.86-.352.982-.693.124-.342.124-.634.087-.69-.035-.057-.133-.09-.308-.157z"/>
+        </svg>
+        ASESOR 2
+      </a>
+      
+      <a href="#" class="asesor-btn" id="asesor3-link" target="_blank" rel="noopener noreferrer">
+        <svg class="link-icon" fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M20.52 3.478A11.923 11.923 0 0012 0C5.373 0 0 5.373 0 12c0 2.105.55 4.07 1.505 5.832L0 24l6.425-1.496A11.902 11.902 0 0012 24c6.627 0 12-5.373 12-12 0-3.208-1.257-6.215-3.48-8.522zM12 21.5a9.487 9.487 0 01-4.735-1.344l-.34-.205-3.819.889.936-3.72-.22-.37A9.475 9.475 0 012.5 12c0-5.247 4.253-9.5 9.5-9.5s9.5 4.253 9.5 9.5-4.253 9.5-9.5 9.5zm5.26-7.138c-.275-.137-1.627-.8-1.879-.89-.252-.091-.434-.137-.617.137-.183.275-.707.89-.867 1.074-.16.183-.322.205-.597.068a7.086 7.086 0 01-2.08-1.28 7.611 7.611 0 01-1.4-1.741c-.146-.25-.015-.385.118-.52.122-.121.274-.314.41-.471.134-.157.179-.274.27-.457.089-.183.045-.343-.022-.48-.068-.136-.616-1.484-.843-2.032-.222-.537-.45-.463-.616-.472a1.143 1.143 0 00-.521-.031c-.159 0-.48.063-.732.306-.251.244-.958.933-.958 2.276 0 1.343.98 2.638 1.116 2.823.137.183 1.925 2.937 4.663 4.115a17.87 17.87 0 002.86 1.254c.378.158.673.135.924.082.282-.058.86-.352.982-.693.124-.342.124-.634.087-.69-.035-.057-.133-.09-.308-.157z"/>
+        </svg>
+        ASESOR 3
+      </a>
+    </div>
+    
+    <!-- Botones de redes sociales -->
+    <div class="social-container">
+      <a href="#" class="social-btn" id="instagram-link" target="_blank" rel="noopener noreferrer">
+        <svg class="link-icon" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm4.25 3a4.25 4.25 0 110 8.5 4.25 4.25 0 010-8.5zm0 1.5a2.75 2.75 0 100 5.5 2.75 2.75 0 000-5.5zm3.54-2.25a1.03 1.03 0 11-2.06 0 1.03 1.03 0 012.06 0z"/>
+        </svg>
+      </a>
+      
+      <a href="#" class="social-btn" id="tiktok-link" target="_blank" rel="noopener noreferrer">
+        <svg class="link-icon" fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-.88-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+        </svg>
+      </a>
+      
+      <a href="#" class="social-btn" id="facebook-link" target="_blank" rel="noopener noreferrer">
+        <svg class="link-icon" fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M22 12.073C22 6.479 17.523 2 12 2S2 6.479 2 12.073c0 4.991 3.657 9.128 8.438 9.876v-6.988h-2.54v-2.888h2.54v-2.204c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.196 2.238.196v2.465h-1.26c-1.243 0-1.63.77-1.63 1.562v1.871h2.773l-.443 2.888h-2.33v6.988C18.343 21.202 22 17.064 22 12.073z"/>
+        </svg>
+      </a>
+    </div>
+  </main>
+
+  <script>
+    // Enlaces de redes sociales (mantienen tus enlaces originales)
+    const REDES_SOCIALES = {
+      instagram: {
+        web: "https://www.instagram.com/fashioncollectionhn",
+        app: "https://www.instagram.com/fashioncollectionhn?igsh=MjdvamhmeGU0d3Fz"
+      },
+      facebook: {
+        web: "https://www.facebook.com/fashioncollectionsps/?locale=es_LA",
+        app: "https://www.facebook.com/share/1AqvcxhSYu/?mibextid=wwXIfr"
+      },
+      tiktok: {
+        web: "https://www.tiktok.com/@fashioncollectionhn",
+        app: "https://www.tiktok.com/@fashioncollectionhn?_t=ZM-8xXX3cduYAK&_r=1"
+      }
+    };
+
+    // AQUÍ DEBES AGREGAR LOS NÚMEROS DE TELÉFONO DE TUS ASESORES
+    // Reemplaza los números de ejemplo por los números reales
+    const NUMEROS_ASESORES = {
+      asesor1: "NUMERO_ASESOR_1", // Reemplaza por el número real
+      asesor2: "NUMERO_ASESOR_2", // Reemplaza por el número real
+      asesor3: "NUMERO_ASESOR_3"  // Reemplaza por el número real
+    };
+
+    // Función para detectar dispositivo móvil
+    function esMovil() {
+      return /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    // Función para configurar enlaces de WhatsApp para asesores
+    function configurarAsesores() {
+      const asesores = {
+        asesor1: document.getElementById('asesor1-link'),
+        asesor2: document.getElementById('asesor2-link'),
+        asesor3: document.getElementById('asesor3-link')
+      };
+
+      for (const [asesor, enlace] of Object.entries(asesores)) {
+        if (!enlace) continue;
+
+        const numero = NUMEROS_ASESORES[asesor];
+        const urlWeb = `https://wa.me/${numero}`;
+        const urlApp = `whatsapp://send?phone=${numero}`;
+
+        if (esMovil()) {
+          enlace.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Intenta abrir la app
+            window.location.href = urlApp;
+            // Si la app no se abre en 1 segundo, abre la versión web
+            setTimeout(() => {
+              window.location.href = urlWeb;
+            }, 1000);
+          });
+        } else {
+          enlace.href = urlWeb;
+        }
+      }
+    }
+
+    // Función para configurar enlaces de redes sociales
+    function configurarRedes() {
+      const enlaces = {
+        instagram: document.getElementById('instagram-link'),
+        facebook: document.getElementById('facebook-link'),
+        tiktok: document.getElementById('tiktok-link')
+      };
+
+      for (const [red, enlace] of Object.entries(enlaces)) {
+        if (!enlace) continue;
+
+        const urls = REDES_SOCIALES[red];
+        if (esMovil()) {
+          enlace.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Intenta abrir la app
+            window.location.href = urls.app;
+            // Si la app no se abre en 1 segundo, abre la versión web
+            setTimeout(() => {
+              window.location.href = urls.web;
+            }, 1000);
+          });
+        } else {
+          enlace.href = urls.web;
+        }
+      }
+    }
+
+    // Inicializar cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', () => {
+      configurarAsesores();
+      configurarRedes();
+      console.log('🌸 Fashion Collection - Ventas Online configurado correctamente');
+    });
+  </script>
+</body>
+</html>
